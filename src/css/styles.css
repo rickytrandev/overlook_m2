@@ -1,3 +1,126 @@
+
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+.title {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  margin: 0;
+  margin-top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-image: url('../images/hotel-swimming-pool.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 600px;
+}
+#loginForm, .search-rooms-form{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 300px;
+  margin-right: 100px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.search-rooms-form {
+  padding: 15px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+::placeholder {
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+}
+
+
+input[type="date"] {
+  width: 100%;
+  margin: auto;
+  padding: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px; /* Adjust font size as needed */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+  box-sizing: border-box; /* Include padding and border in the total width/height */
+}
+
+.submit-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  background-color: #2980b9;;
+  color: white;
+  margin: auto;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #226490;
+}
+
+.input-field {
+  margin: 15px;
+  height: 25px;
+  border: none;
+  border-bottom: lightgray solid 2px;
+}
+
+/* Remove default focus outline for all elements */
+:focus {
+  outline: none;
+}
+
+/* Style for the bottom border when an element is focused */
+:focus:not(textarea):not(select):not(input[type="file"]):not(input[type="radio"]):not(input[type="checkbox"]) {
+  border: none; /* Remove any default border */
+  border-bottom: 2px solid #0b6efd; /* Add a 2px solid blue bottom border */
+}
+
+.greeting-header {
+  margin: 20px;
+}
+
+.login-main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.main-content-photos {
+  width: 100%;
+  height: 230px;
+}
+
+.login-page-cards {
+  width: 350px;
+  margin: 35px;
+}
+
+.login-error-message {
+  text-align: center;
+  color: red;
+}
+.hidden {
+  display: none !important;
 }
