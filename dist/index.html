@@ -4,15 +4,49 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <title>Overlook</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <h1 class="title">overlook</h1>
   <section class="login-page">
-    <h1 class="title">Overlook</h1>
-    <div class="login-box">
-      <h2 class="greeting-header"></h2>
+    <div class="hero">
+        <form id="loginForm" class="hidden">
+          <h2 class="greeting-header">Welcome</h2>
+          <p class="login-error-message hidden"></p>
+          <input class="input-field" placeholder="Username" type="text" autofocus>
+          <input class="input-field" placeholder="Password" type="password">
+          <input class="submit-btn" value="sign in" type="submit">
+        </form>
+        <form class="search-rooms-form">
+          <h2 class="greeting-header"></h2>
+          <p class="align-center" >let's book your next stay</p>
+          <p class="login-error-message hidden"></p>
+          <span class="calendar-placeholder" >from:</span>
+          <input type="date" id="from-date">
+          <span class="calendar-placeholder" >to:</span>
+          <input type="date" id="to-date">
+          <input class="submit-btn" value="search" type="submit">
+        </form>
     </div>
+  <main class="login-main-content hidden">
+    <div class="login-page-cards">
+      <img class="main-content-photos" src="./images/courtyard.jpg" alt="a two story couryard with a pool in the center">
+      <p class="card-text" >Welcome to our luxurious hotel experience! Nestled in the heart of a vibrant cityscape, our accommodations offer a fusion of modern elegance and comfort. With panoramic views, plush amenities, and attentive service, your stay here promises an unforgettable retreat. Explore nearby attractions or unwind in our serene spa oasis.</p>
+    </div>
+    <div class="login-page-cards">
+      <img class="main-content-photos" src="./images/person-on-bed.jpg" alt="a woman laying across a hotel bed">
+      <p class="card-text" >Indulge in a world-class stay at our boutique hotel. Immerse yourself in sophistication and tranquility, enveloped by tasteful interiors and impeccable service. From opulent suites to culinary delights at our fine dining restaurants, every moment exudes refinement. Discover our blend of lavish comfort and personalized hospitality.</p>
+    </div>
+    <div class="login-page-cards">
+      <img class="main-content-photos" src="./images/plank-across-water.jpg" alt="a brown wooden dock across water">
+      <p class="card-text" >Discover the essence of relaxation at our seaside resorts. Our haven of serenity invites you to unwind amidst stunning coastal vistas and lush landscapes. From tranquil beach strolls to invigorating activities, each day offers a myriad of experiences. Impeccable accommodations and gourmet dining await your presence.</p>
+    </div>
+  </main>
+  <main class="booking-interace">
+  </main>
   </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
