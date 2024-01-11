@@ -5,6 +5,19 @@ body {
   height: 100vh;
 }
 
+.available-rooms-default {
+  font-weight: lighter;
+  margin: 20px;
+}
+
+h2 {
+  font-weight: lighter;
+}
+
+.booking-title {
+  margin: 10px 20px 10px 20px;
+}
+
 .title {
   position: absolute;
   font-family: 'Montserrat', sans-serif;
@@ -26,18 +39,16 @@ body {
   background-repeat: no-repeat;
   height: 600px;
 }
-#loginForm, .search-rooms-form{
+#loginForm, #search-rooms-form{
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  padding: 15px;
   width: 350px;
-  height: 300px;
+  /* height: 300px; */
   margin-right: 100px;
   background-color: white;
   border-radius: 10px;
-}
-
-.search-rooms-form {
-  padding: 15px;
 }
 
 .align-center {
@@ -49,24 +60,26 @@ body {
   color: black;
 }
 
-
 input[type="date"] {
+  font-weight: lighter;
   width: 100%;
   margin: auto;
   padding: 8px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px; /* Adjust font size as needed */
-  border: 1px solid #ccc; /* Add border */
-  border-radius: 4px; /* Add border-radius for rounded corners */
-  box-sizing: border-box; /* Include padding and border in the total width/height */
+  font-size: 14px; 
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .submit-btn {
   font-family: 'Open Sans', sans-serif;
+  font-weight: lighter;
   font-size: 20px;
   background-color: #2980b9;;
   color: white;
-  margin: auto;
+  margin: 20px 0px 5px 0px;
   width: 100%;
   height: 40px;
   border-radius: 5px;
@@ -81,7 +94,8 @@ input[type="date"] {
 }
 
 .input-field {
-  margin: 15px;
+  font-weight: lighter;
+  margin: 20px 0px 20px 0px;
   height: 25px;
   border: none;
   border-bottom: lightgray solid 2px;
@@ -117,10 +131,47 @@ input[type="date"] {
   margin: 35px;
 }
 
-.login-error-message {
+.card-text {
+  font-weight: lighter;
+}
+
+.login-error-message, .calendar-error-message {
+  font-weight: lighter;
   text-align: center;
   color: red;
 }
+
+span {
+  font-weight: lighter;
+}
+
+.booking-interface {
+  margin-top: 10px;
+  margin-left: 5px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px;
+}
+
+.descriptor {
+  margin: 5px 0 5px 0;
+}
+
+.total-spent {
+  margin-left: 20px;
+  font-size: 13px;
+  font-weight: lighter;
+}
+
+.bookings-card {
+  margin: 20px;
+}
+
+.current-bookings, .available-rooms {
+  border: #226490 2px solid;
+  border-radius: 5px;
+}
+
 .hidden {
   display: none !important;
 }
