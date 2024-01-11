@@ -6,23 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-  <title>Overlook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1 class="title">overlook</h1>
   <section class="login-page">
     <div class="hero">
-        <form id="loginForm" class="hidden">
+        <form id="loginForm" class="">
           <h2 class="greeting-header">Welcome</h2>
           <p class="login-error-message hidden"></p>
           <input class="input-field" placeholder="Username" type="text" autofocus>
           <input class="input-field" placeholder="Password" type="password">
           <input class="submit-btn" value="sign in" type="submit">
         </form>
-        <form class="search-rooms-form">
+        <form id="search-rooms-form" class="hidden">
           <h2 class="greeting-header"></h2>
-          <p class="align-center" >let's book your next stay</p>
+          <p class="align-center">let's book your next stay</p>
+          <p class="calendar-error-message hidden">Please select a date</p>
           <p class="login-error-message hidden"></p>
           <span class="calendar-placeholder" >from:</span>
           <input type="date" id="from-date">
@@ -31,7 +31,7 @@
           <input class="submit-btn" value="search" type="submit">
         </form>
     </div>
-  <main class="login-main-content hidden">
+  <main class="login-main-content">
     <div class="login-page-cards">
       <img class="main-content-photos" src="./images/courtyard.jpg" alt="a two story couryard with a pool in the center">
       <p class="card-text" >Welcome to our luxurious hotel experience! Nestled in the heart of a vibrant cityscape, our accommodations offer a fusion of modern elegance and comfort. With panoramic views, plush amenities, and attentive service, your stay here promises an unforgettable retreat. Explore nearby attractions or unwind in our serene spa oasis.</p>
@@ -45,10 +45,17 @@
       <p class="card-text" >Discover the essence of relaxation at our seaside resorts. Our haven of serenity invites you to unwind amidst stunning coastal vistas and lush landscapes. From tranquil beach strolls to invigorating activities, each day offers a myriad of experiences. Impeccable accommodations and gourmet dining await your presence.</p>
     </div>
   </main>
-  <main class="booking-interace">
+  <main class="booking-interface">
+    <aside class="current-bookings">
+      <h2 class="booking-title" >Your Bookings</h2>
+      <p class="total-spent"></p>
+    </aside>
+    <section class="available-rooms">
+      <h2 class="booking-title" >Available Rooms</h2>
+      <p class="available-rooms-default">Select a date to view avaiable rooms</p>
+    </section>
   </main>
   </section>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
 </body>
