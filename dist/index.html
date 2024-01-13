@@ -45,16 +45,25 @@
       <p class="card-text" >Discover the essence of relaxation at our seaside resorts. Our haven of serenity invites you to unwind amidst stunning coastal vistas and lush landscapes. From tranquil beach strolls to invigorating activities, each day offers a myriad of experiences. Impeccable accommodations and gourmet dining await your presence.</p>
     </div>
   </main>
-  <main class="booking-interface">
-    <aside class="current-bookings">
-      <h2 class="booking-title" >Your Bookings</h2>
-      <p class="total-spent"></p>
-    </aside>
-    <section class="available-rooms">
-      <h2 class="booking-title" >Available Rooms</h2>
-      <p class="available-rooms-default">Select a date to view avaiable rooms</p>
-    </section>
-  </main>
+  <div class="container">
+    <main class="booking-interface">
+      <aside class="aside">
+        <div class="current-bookings-section">
+          <h2 class="booking-title" >Your Bookings <span class="toggle-icon"><img class="chevron" src="./images/chevron-down.svg" alt="chevron down"></span></h2>
+          <div class="current-bookings">
+            <p class="total-spent"></p>
+          </div>
+        </div>
+        <div class="filters">
+          <h2 class="filter-title"> Filter by:</h2>
+        </div>
+      </aside>
+      <section class="available-rooms">
+        <h2 class="booking-title" >Available Rooms</h2>
+        <p class="available-rooms-default">Select a date to view avaiable rooms</p>
+      </section>
+    </main>
+  </div>
   </section>
   <script src="bundle.js"></script>
 

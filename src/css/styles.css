@@ -14,7 +14,7 @@ h2 {
   font-weight: lighter;
 }
 
-.booking-title {
+.booking-title, .filter-title{
   margin: 10px 20px 10px 20px;
 }
 
@@ -145,12 +145,23 @@ span {
   font-weight: lighter;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .booking-interface {
-  margin-top: 10px;
-  margin-left: 5px;
+  width: 90%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 5px;
+  gap: 10px;
+  margin: 50px 0px 50px 0px;
 }
 
 .descriptor {
@@ -167,9 +178,27 @@ span {
   margin: 20px;
 }
 
-.current-bookings, .available-rooms {
+.current-bookings-section, .available-rooms, .filters {
   border: #226490 2px solid;
   border-radius: 5px;
+}
+
+.toggle-icon {
+  cursor: pointer;
+  display: inline;
+}
+
+.rotate {
+  transform: rotate(180deg) !important;
+}
+
+.chevron {
+  width: 25px;
+  height: 20px;
+  transition: transform .8s ease;
+}
+.current-bookings {
+  display: none;
 }
 
 .hidden {

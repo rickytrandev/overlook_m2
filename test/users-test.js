@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { findRoomDetails, findUserCurrentBookings, getTotalSpent } from '../src/users';
+import { findRoomDetails, findUserCurrentBookings, getTotalSpent, filterRooms, getAvailableRooms } from '../src/users';
 const expect = chai.expect;
 
 describe('Users functions', function() {
@@ -21,8 +21,8 @@ describe('Users functions', function() {
 
     rooms = [
       { "number": 1, "roomType": "residential suite", "bidet": true, "bedSize": "queen", "numBeds": 1,"costPerNight": 358.4 },
+      { "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 },
       { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 },
-      { "number": 3, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }
     ];
   });
 
@@ -48,4 +48,20 @@ describe('Users functions', function() {
     expect(result).to.equal(835.78);
   });
 
+  it('function filterRooms should filter available rooms by roomType property', () => {
+    const suites = filterRooms(rooms, "suite")
+    const singleRoom = filterRooms(rooms, "single room")
+
+    expect(suites).to.deep.equal([{ "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
+    expect(singleRoom).to.deep.equal([{ "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }]);
+  });
+
+  it.only('function getAvailableRooms should filter available rooms by date', () => {
+    const result1 = getAvailableRooms(currentBookings, "2024/01/24", rooms)
+    const result2 = getAvailableRooms(currentBookings, "2024/04/22", rooms)
+
+    expect(result1).to.deep.equal([{ "number": 1, "roomType": "residential suite", "bidet": true, "bedSize": "queen", "numBeds": 1,"costPerNight": 358.4 },
+    { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
+    expect(result2).to.deep.equal([{ "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }, { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
+  });
 });
