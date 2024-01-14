@@ -56,7 +56,7 @@ describe('Users functions', function() {
     expect(singleRoom).to.deep.equal([{ "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }]);
   });
 
-  it.only('function getAvailableRooms should filter available rooms by date', () => {
+  it('function getAvailableRooms should filter available rooms by date', () => {
     const result1 = getAvailableRooms(currentBookings, "2024/01/24", rooms)
     const result2 = getAvailableRooms(currentBookings, "2024/04/22", rooms)
 

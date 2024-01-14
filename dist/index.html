@@ -45,7 +45,7 @@
       <p class="card-text" >Discover the essence of relaxation at our seaside resorts. Our haven of serenity invites you to unwind amidst stunning coastal vistas and lush landscapes. From tranquil beach strolls to invigorating activities, each day offers a myriad of experiences. Impeccable accommodations and gourmet dining await your presence.</p>
     </div>
   </main>
-  <div class="container">
+  <div class="container hidden">
     <main class="booking-interface">
       <aside class="aside">
         <div class="current-bookings-section">
@@ -54,13 +54,30 @@
             <p class="total-spent"></p>
           </div>
         </div>
-        <div class="filters">
+        <div class="filters hidden">
           <h2 class="filter-title"> Filter by:</h2>
+          <span>
+            <input type="checkbox" class="checkbox" name="residential suite" value="residential suite">
+            <label for="residential suite">Residential suite</label>
+          </span>
+          <span>
+            <input type="checkbox" class="checkbox" name="suite" value="suite">
+            <label for="suite"> Suite</label>
+          </span>
+          <span>
+            <input type="checkbox" class="checkbox" name="single room" value="single room">
+            <label for="single room"> Single room</label>
+          </span>
+          <span>
+            <input type="checkbox" class="checkbox" name="junior suite" value="junior suite">
+            <label for="junior suite"> Junior suite</label>
+          </span>
         </div>
       </aside>
       <section class="available-rooms">
         <h2 class="booking-title" >Available Rooms</h2>
         <p class="available-rooms-default">Select a date to view avaiable rooms</p>
+        <p class="available-rooms-error hidden">It seems we are having issues finding a room for this date. Please give us a call.</p>
       </section>
     </main>
   </div>

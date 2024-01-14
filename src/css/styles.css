@@ -14,8 +14,13 @@ h2 {
   font-weight: lighter;
 }
 
-.booking-title, .filter-title{
+.booking-title {
   margin: 10px 20px 10px 20px;
+}
+
+.filter-title {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .title {
@@ -135,7 +140,7 @@ input[type="date"] {
   font-weight: lighter;
 }
 
-.login-error-message, .calendar-error-message {
+.login-error-message, .calendar-error-message, .available-rooms-error, .filter-rooms-error {
   font-weight: lighter;
   text-align: center;
   color: red;
@@ -181,6 +186,12 @@ span {
 .current-bookings-section, .available-rooms, .filters {
   border: #226490 2px solid;
   border-radius: 5px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .toggle-icon {

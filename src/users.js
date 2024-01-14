@@ -24,8 +24,8 @@ export function getTotalSpent(roomDetails) {
 	return totalSpent
 }
 
-export function filterRooms(availableRooms, roomType) {
-	return availableRooms.filter(room => room.roomType === roomType)
+export function filterRooms(availableRooms, roomTypes) {
+	return availableRooms.filter(room => roomTypes.includes(room.roomType))
 }
 
 export function getAvailableRooms(allBookings, fromDate, allRooms) {

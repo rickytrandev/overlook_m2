@@ -16,6 +16,7 @@ const availableRoomsText = $('.available-rooms-default')
 const calendarError = $('.calendar-error-message')
 const bookingInterface = $('.booking-interface')
 const toggleIcon = $('.toggle-icon')
+const checkboxes = $('.checkbox')
 
 // global variables
 let users;
@@ -24,6 +25,7 @@ let currentUser;
 let allBookings;
 let allRooms;
 let availableRooms;
+let filteredRoomTypes = []
 
 // event listeners
 $(window).on('load', () => {
@@ -53,7 +55,7 @@ loginForm.submit((e) => {
 			greeting.addClass('align-center')
 			greeting.text(`Hi, ${currentUser.name}.`)
 			searchRoomsForm.removeClass('hidden')
-			bookingInterface.removeClass('hidden')
+			$('.container').removeClass('hidden')
 			generateUserBookedRooms()
 		} else {
 			console.log('cant find user');
@@ -70,14 +72,14 @@ searchRoomsForm.submit((e) => {
 	e.preventDefault()
 	let fromDate = $('#from-date').val().replaceAll('-','/')
 	let toDate = $('#to-date').val()
-	console.log(allBookings);
 	
 	if(fromDate) {
-		console.log('from date', fromDate);
-		let availableRooms = getAvailableRooms(allBookings, fromDate, allRooms)
+		$('.filters').removeClass('hidden')
+		availableRooms = getAvailableRooms(allBookings, fromDate, allRooms)
 		if (availableRooms) {
-			availableRoomsSection.html(' ')
+			availableRoomsSection.html('<h2 class="booking-title" >Available Rooms</h2>')
 			console.log("available rooms", availableRooms);
+			$('available-rooms-error').removeClass('hidden')
 			availableRoomsText.addClass('hidden')
 			availableRooms.forEach(room => {
 				availableRoomsSection.html(availableRoomsSection.html() + `
@@ -91,8 +93,8 @@ searchRoomsForm.submit((e) => {
 				`);
 			})
 		} else {
-			// sorry there are no available rooms for this date
-		}
+			$('available-rooms-error').removeClass('hidden')
+				}
 
 	} else {
 		calendarError.removeClass('hidden')
@@ -104,6 +106,76 @@ toggleIcon.click(() => {
 	currentBookingsSection.slideToggle();
 	$('.chevron').toggleClass("rotate");
 })
+
+checkboxes.each(function() {
+	$(this).click((e) => {
+		if (e.target.checked) {
+			filteredRoomTypes.push(e.target.value)
+			let filteredRooms = filterRooms(availableRooms, filteredRoomTypes)
+			console.log(filteredRooms);
+			if(filteredRooms.length === 0) {
+				availableRoomsSection.html(`
+				<p class="filter-rooms-error">We are sorry, there are no rooms that match your criteria. Please adjust your filters.</p>
+				`)
+			} else {
+				availableRoomsSection.html('<h2 class="booking-title" >Available Rooms</h2>')
+				filteredRooms.forEach(room => {
+					availableRoomsSection.html(availableRoomsSection.html() + `
+					<div class="bookings-card">
+					<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
+					<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
+					<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
+					<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+					<button>View</button> 
+					</div>
+					`);
+				})
+			}
+			console.log('available rooms',availableRooms)
+			console.log('filtered room types', filteredRoomTypes)
+		} 
+		if (!(e.target.checked)) {
+			filteredRoomTypes = filteredRoomTypes.filter(roomType => roomType !== (e.target.value))
+			const allUnchecked = $('.checkbox').filter(':checked').length === 0;
+			let filteredRooms = filterRooms(availableRooms, filteredRoomTypes)
+
+			if (allUnchecked) {
+				availableRoomsSection.html('<h2 class="booking-title" >Available Rooms</h2>')
+				availableRooms.forEach(room => {
+					availableRoomsSection.html(availableRoomsSection.html() + `
+					<div class="bookings-card">
+					<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
+					<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
+					<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
+					<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+					<button>View</button> 
+					</div>
+					`);
+				})
+			} else {
+					if(filteredRooms.length === 0) {
+						availableRoomsSection.html(`
+						<p class="filter-rooms-error">We are sorry, there are no rooms that match your criteria. Please adjust your filters.</p>
+						`)
+					} else {
+						availableRoomsSection.html('<h2 class="booking-title" >Available Rooms</h2>')
+						filteredRooms.forEach(room => {
+							availableRoomsSection.html(availableRoomsSection.html() + `
+							<div class="bookings-card">
+							<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
+							<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
+							<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
+							<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+							<button>View</button> 
+							</div>
+							`);
+						})
+				}
+			}
+		}
+	})
+}) 
+
 
 // functions
 function generateUserBookedRooms() {
