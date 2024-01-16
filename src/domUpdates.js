@@ -19,10 +19,10 @@ const toggleIcon = $('.toggle-icon')
 const checkboxes = $('.checkbox')
 
 // global variables
+export let allBookings;
 let users;
 let userID;
 let currentUser;
-let allBookings;
 let allRooms;
 let availableRooms;
 let fromDate
@@ -43,6 +43,7 @@ $(window).on('load', () => {
 
 loginForm.submit((e) => {
 	e.preventDefault()
+	// TODO: Adjust conditional for username and password
 	// const username = $('.input-field[type="text"]').val();
   // const password = $('.input-field[type="password"]').val();
 	let username = 'customer50'
@@ -141,7 +142,7 @@ checkboxes.each(function() {
 
 // functions
 function generateAvailableRooms(rooms) {
-	availableRoomsSection.html('<h2 class="booking-title" >Available Rooms</h2>')
+	availableRoomsSection.html(`<h2 class="booking-title" >Available Rooms for ${fromDate}</h2>`)
 	rooms.forEach(room => {
 		availableRoomsSection.html(availableRoomsSection.html() + `
 		<div class="bookings-card">
@@ -155,19 +156,21 @@ function generateAvailableRooms(rooms) {
 		$('.reserve-btn').click(function(e) {
 			const roomNumber = Number(e.target.id)
 			bookRoom(roomNumber, fromDate, userID)
-			getData('http://localhost:3001/api/v1/bookings')
-			.then(data => allBookings = data.bookings);
-			$(`#${String(roomNumber)}`).parent().remove()
+			.then(() => {
+				$(`#${String(roomNumber)}`).parent().remove()
+				return generateUserBookedRooms()
+			})
 		});
 	})
 }
 
 function generateUserBookedRooms() {
 	const usersBookedRooms = findUserCurrentBookings(currentUser, allBookings)
+	console.log(usersBookedRooms);
 	const roomDetails = findRoomDetails(usersBookedRooms, allRooms)
+	console.log(roomDetails);
 	const totalSpent = getTotalSpent(roomDetails).toFixed(2)
-
-	totalSpentTag.text(`Total spent: $${totalSpent}`)
+	currentBookingsSection.html(`<p class="total-spent">Total spent: $${totalSpent}</p>`)
 	roomDetails.forEach(room => {
 		currentBookingsSection.html(currentBookingsSection.html() + `
 		<div class="bookings-card">
@@ -179,5 +182,4 @@ function generateUserBookedRooms() {
 		</div>
 		`);
 	})
-
 }
