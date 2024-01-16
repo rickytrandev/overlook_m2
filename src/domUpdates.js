@@ -9,14 +9,14 @@ const searchRoomsForm = $('#search-rooms-form')
 const loginMainContent = 	$('.login-main-content')
 const greeting = 	$('.greeting-header')
 const currentBookingsSection = $('.current-bookings')
-const totalSpentTag = $('.total-spent')
 const availableRoomsSection = $('.available-rooms')
 const bookStayText = $('.align-center')
 const availableRoomsText = $('.available-rooms-default')
 const calendarError = $('.calendar-error-message')
-const bookingInterface = $('.booking-interface')
 const toggleIcon = $('.toggle-icon')
 const checkboxes = $('.checkbox')
+const closeModal = $('.close')
+const modal = $('#myModal')
 
 // global variables
 export let allBookings;
@@ -37,8 +37,6 @@ $(window).on('load', () => {
 	getData('http://localhost:3001/api/v1/rooms')
 		.then(data => allRooms = data.rooms);
 });
-
-
 
 
 loginForm.submit((e) => {
@@ -101,6 +99,19 @@ searchRoomsForm.submit((e) => {
 toggleIcon.click(() => {
 	currentBookingsSection.slideToggle();
 	$('.chevron').toggleClass("rotate");
+	if(toggleIcon.attr('aria-expanded') === 'false') {
+		$(toggleIcon.attr('aria-expanded', 'true'))
+		$(toggleIcon.attr('aria-label', 'close sidebar drop-down menu'))
+	} else {
+		$(toggleIcon.attr('aria-expanded', 'false'))
+		$(toggleIcon.attr('aria-label', 'open sidebar drop-down menu'))
+	}
+})
+
+toggleIcon.keydown((e) => {
+	if(e.key === "Enter")
+	currentBookingsSection.slideToggle();
+	$('.chevron').toggleClass("rotate");
 })
 
 checkboxes.each(function() {
@@ -139,6 +150,20 @@ checkboxes.each(function() {
 	})
 }) 
 
+closeModal.click(() => modal.css('display', 'none'))
+
+$(window).click((event) => {
+	if (event.target === modal[0]) {
+		modal.css('display', 'none')
+	}
+});
+
+$(document).keydown((e) => {
+	// Check if the pressed key is the "Escape" key (key code 27)
+	if (e.key === "Escape") {
+		modal.css('display', 'none')
+	}
+});
 
 // functions
 function generateAvailableRooms(rooms) {
@@ -157,6 +182,7 @@ function generateAvailableRooms(rooms) {
 			const roomNumber = Number(e.target.id)
 			bookRoom(roomNumber, fromDate, userID)
 			.then(() => {
+				modal.css('display', 'block')
 				$(`#${String(roomNumber)}`).parent().remove()
 				return generateUserBookedRooms()
 			})
@@ -166,10 +192,9 @@ function generateAvailableRooms(rooms) {
 
 function generateUserBookedRooms() {
 	const usersBookedRooms = findUserCurrentBookings(currentUser, allBookings)
-	console.log(usersBookedRooms);
 	const roomDetails = findRoomDetails(usersBookedRooms, allRooms)
-	console.log(roomDetails);
 	const totalSpent = getTotalSpent(roomDetails).toFixed(2)
+
 	currentBookingsSection.html(`<p class="total-spent">Total spent: $${totalSpent}</p>`)
 	roomDetails.forEach(room => {
 		currentBookingsSection.html(currentBookingsSection.html() + `
