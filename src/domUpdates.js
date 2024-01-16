@@ -41,19 +41,16 @@ $(window).on('load', () => {
 
 loginForm.submit((e) => {
 	e.preventDefault()
-	// TODO: Adjust conditional for username and password
-	// const username = $('.input-field[type="text"]').val();
-  // const password = $('.input-field[type="password"]').val();
-	let username = 'customer50'
-	let password = 'overlook'
+	const username = $('.input-field[type="text"]').val();
+  const password = $('.input-field[type="password"]').val();
+	// let username = 'customer50'
+	// let password = 'overlook'
 	userID = Number(username.match(/\d+/));
 	
 	if(username && password) {
 		let findUser = users.find(user => user.id === userID)
 		if (username ==`customer${userID}` && findUser && password === 'overlook') {
-		// if (username ==`customer${userID}` && findUser && password === 'overlook') {
 			currentUser = findUser
-			console.log('User found');
 			loginError.addClass('hidden')
 			loginMainContent.addClass('hidden')
 			loginForm.addClass('hidden')
@@ -63,7 +60,6 @@ loginForm.submit((e) => {
 			$('.container').removeClass('hidden')
 			generateUserBookedRooms()
 		} else {
-			console.log('cant find user');
 			loginError.text(`We can't find that username and password`)
 			loginError.removeClass('hidden')
 		}
@@ -76,8 +72,6 @@ loginForm.submit((e) => {
 searchRoomsForm.submit((e) => {
 	e.preventDefault()
 	fromDate = $('#from-date').val().replaceAll('-','/')
-	// TODO: delete hard coded from date below
-	fromDate = '2024/01/22'
 	let toDate = $('#to-date').val()
 	
 	if(fromDate) {
@@ -109,7 +103,7 @@ toggleIcon.click(() => {
 })
 
 toggleIcon.keydown((e) => {
-	if(e.key === "Enter")
+	if(e.key === "Enter" || e.key === ' ')
 	currentBookingsSection.slideToggle();
 	$('.chevron').toggleClass("rotate");
 })
@@ -119,7 +113,6 @@ checkboxes.each(function() {
 		if (e.target.checked) {
 			filteredRoomTypes.push(e.target.value)
 			let filteredRooms = filterRooms(availableRooms, filteredRoomTypes)
-			console.log(filteredRooms);
 			if(filteredRooms.length === 0) {
 				availableRoomsSection.html(`
 				<p class="filter-rooms-error">We are sorry, there are no rooms that match your criteria. Please adjust your filters.</p>
@@ -127,8 +120,6 @@ checkboxes.each(function() {
 			} else {
 				generateAvailableRooms(filteredRooms)
 			}
-			console.log('available rooms',availableRooms)
-			console.log('filtered room types', filteredRoomTypes)
 		} 
 		if (!(e.target.checked)) {
 			filteredRoomTypes = filteredRoomTypes.filter(roomType => roomType !== (e.target.value))
@@ -159,7 +150,6 @@ $(window).click((event) => {
 });
 
 $(document).keydown((e) => {
-	// Check if the pressed key is the "Escape" key (key code 27)
 	if (e.key === "Escape") {
 		modal.css('display', 'none')
 	}
@@ -170,7 +160,7 @@ function generateAvailableRooms(rooms) {
 	availableRoomsSection.html(`<h2 class="booking-title" >Available Rooms for ${fromDate}</h2>`)
 	rooms.forEach(room => {
 		availableRoomsSection.html(availableRoomsSection.html() + `
-		<div class="bookings-card">
+		<div class="bookings-card tabindex="0">
 		<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
 		<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
 		<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
@@ -192,13 +182,13 @@ function generateAvailableRooms(rooms) {
 
 function generateUserBookedRooms() {
 	const usersBookedRooms = findUserCurrentBookings(currentUser, allBookings)
-	const roomDetails = findRoomDetails(usersBookedRooms, allRooms)
+	const roomDetails = findRoomDetails(usersBookedRooms, allRooms).reverse()
 	const totalSpent = getTotalSpent(roomDetails).toFixed(2)
 
 	currentBookingsSection.html(`<p class="total-spent">Total spent: $${totalSpent}</p>`)
 	roomDetails.forEach(room => {
 		currentBookingsSection.html(currentBookingsSection.html() + `
-		<div class="bookings-card">
+		<div class="bookings-card" tabindex="0">
 		<p class="descriptor"> Date: <span>${room.date}</span></p>
 		<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
 		<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>

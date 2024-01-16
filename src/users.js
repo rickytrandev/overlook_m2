@@ -7,24 +7,17 @@ export function findUserCurrentBookings(currentUser, currentBookings) {
 
 export function findRoomDetails(bookedRooms, allRooms) {
 	const userRoomDetails = []
-	console.log('booked rooms', bookedRooms);
 	const roomNumbers = bookedRooms.map(booking => booking.roomNumber)
-	console.log('room numbers', roomNumbers);
 	const dates = bookedRooms.map(booking => booking.date)
 
-	console.log('dates', dates);
-	const findRoomDetails = roomNumbers.forEach(number => {
+	roomNumbers.forEach(number => {
 		let roomDetails = allRooms.find(room => room.number === number)
 		userRoomDetails.push(roomDetails)
 	})
 
-	console.log(userRoomDetails);
-	// const filteredRooms = allRooms.filter(room => roomNumbers.includes(room.number));
-	// console.log('filtered rooms', filteredRooms);
 	const filteredRoomsWithDates = userRoomDetails.map((room, index) => {
 		return { number: room.number, roomType : room.roomType, bidet : room.bidet, bedSize : room.bedSize, numBeds : room.numBeds, costPerNight : room.costPerNight, date : dates[index] }
 	})
-	console.log('filtered rooms', filteredRoomsWithDates);
 	return filteredRoomsWithDates
 }
 
