@@ -18,6 +18,11 @@ h2 {
   margin: 10px 20px 10px 20px;
 }
 
+.filter-title {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 .title {
   position: absolute;
   font-family: 'Montserrat', sans-serif;
@@ -53,6 +58,7 @@ h2 {
 
 .align-center {
   text-align: center;
+  font-weight: lighter;
 }
 
 ::placeholder {
@@ -135,7 +141,7 @@ input[type="date"] {
   font-weight: lighter;
 }
 
-.login-error-message, .calendar-error-message {
+.login-error-message, .calendar-error-message, .available-rooms-error, .filter-rooms-error {
   font-weight: lighter;
   text-align: center;
   color: red;
@@ -145,12 +151,23 @@ span {
   font-weight: lighter;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .booking-interface {
-  margin-top: 10px;
-  margin-left: 5px;
+  width: 90%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 5px;
+  gap: 10px;
+  margin: 50px 0px 50px 0px;
 }
 
 .descriptor {
@@ -167,9 +184,38 @@ span {
   margin: 20px;
 }
 
-.current-bookings, .available-rooms {
+.current-bookings-section, .available-rooms, .filters {
   border: #226490 2px solid;
   border-radius: 5px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.toggle-icon {
+  cursor: pointer;
+  display: inline;
+}
+
+.rotate {
+  transform: rotate(180deg) !important;
+}
+
+.chevron {
+  width: 25px;
+  height: 20px;
+  transition: transform .8s ease;
+}
+.current-bookings {
+  display: none;
+}
+
+footer {
+  background-color:#2980b9;
+  height: 100px;
 }
 
 .hidden {

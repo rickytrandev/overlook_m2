@@ -11,6 +11,8 @@ import './images/turing-logo.png'
 import './images/courtyard.jpg'
 import './images/person-on-bed.jpg'
 import './images/plank-across-water.jpg'
+import './images/chevron-up.svg'
+import './images/chevron-down.svg'
 
 // import $ from 'jquery';
 import './domUpdates'
