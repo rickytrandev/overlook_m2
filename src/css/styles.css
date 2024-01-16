@@ -58,6 +58,7 @@ h2 {
 
 .align-center {
   text-align: center;
+  font-weight: lighter;
 }
 
 ::placeholder {
@@ -210,6 +211,11 @@ span {
 }
 .current-bookings {
   display: none;
+}
+
+footer {
+  background-color:#2980b9;
+  height: 100px;
 }
 
 .hidden {
