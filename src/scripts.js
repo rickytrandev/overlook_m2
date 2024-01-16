@@ -13,6 +13,8 @@ import './images/person-on-bed.jpg'
 import './images/plank-across-water.jpg'
 import './images/chevron-up.svg'
 import './images/chevron-down.svg'
+import './images/github.svg'
+import './images/linkedin.svg'
 
 // import $ from 'jquery';
 import './domUpdates'

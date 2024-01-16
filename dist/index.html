@@ -7,16 +7,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <title>Overlook</title>
 </head>
 <body>
   <h1 class="title">overlook</h1>
   <section class="login-page">
-    <div class="hero">
+    <div class="hero" role="banner">
         <form id="loginForm" class="">
           <h2 class="greeting-header">Welcome</h2>
           <p class="login-error-message hidden"></p>
-          <input class="input-field" placeholder="Username" type="text" autofocus>
-          <input class="input-field" placeholder="Password" type="password">
+          <input class="input-field" placeholder="Username" type="text" aria-required autofocus>
+          <input class="input-field" placeholder="Password" aria-required type="password">
           <input class="submit-btn" value="sign in" type="submit">
         </form>
         <form id="search-rooms-form" class="hidden">
@@ -25,9 +26,9 @@
           <p class="calendar-error-message hidden">Please select a date</p>
           <p class="login-error-message hidden"></p>
           <span class="calendar-placeholder" >from:</span>
-          <input type="date" id="from-date">
+          <input type="date" id="from-date" aria-required>
           <span class="calendar-placeholder" >to:</span>
-          <input type="date" id="to-date">
+          <input type="date" id="to-date" aria-required>
           <input class="submit-btn" value="search" type="submit">
         </form>
     </div>
@@ -45,33 +46,37 @@
       <p class="card-text" >Discover the essence of relaxation at our seaside resorts. Our haven of serenity invites you to unwind amidst stunning coastal vistas and lush landscapes. From tranquil beach strolls to invigorating activities, each day offers a myriad of experiences. Impeccable accommodations and gourmet dining await your presence.</p>
     </div>
   </main>
-  <div class="container hidden">
+  <div role="menu" class="container hidden">
     <main class="booking-interface">
       <aside class="aside">
-        <div class="current-bookings-section">
-          <h2 class="booking-title" >Your Bookings <span class="toggle-icon"><img class="chevron" src="./images/chevron-down.svg" alt="chevron down"></span></h2>
-          <div class="current-bookings">
-            <p class="total-spent"></p>
-          </div>
-        </div>
         <div class="filters hidden">
           <h2 class="filter-title"> Filter by:</h2>
           <span>
-            <input type="checkbox" class="checkbox" name="residential suite" value="residential suite">
-            <label for="residential suite">Residential suite</label>
+            <label for="residential suite">
+              <input type="checkbox" class="checkbox" name="residential suite" value="residential suite"> Residential suite
+            </label>
           </span>
           <span>
-            <input type="checkbox" class="checkbox" name="suite" value="suite">
-            <label for="suite"> Suite</label>
+            <label for="suite">
+              <input type="checkbox" class="checkbox" name="suite" value="suite"> Suite
+            </label>
           </span>
           <span>
-            <input type="checkbox" class="checkbox" name="single room" value="single room">
-            <label for="single room"> Single room</label>
+            <label for="single room"> 
+              <input type="checkbox" class="checkbox" name="single room" value="single room"> Single room
+            </label>
           </span>
           <span>
-            <input type="checkbox" class="checkbox" name="junior suite" value="junior suite">
-            <label for="junior suite"> Junior suite</label>
+            <label for="junior suite"> 
+              <input type="checkbox" class="checkbox" name="junior suite" value="junior suite"> Junior suite
+            </label>
           </span>
+        </div>
+        <div class="current-bookings-section">
+          <h2 class="booking-title">Your Bookings <span aria-expanded="false" aria-controls="drop-down-menu" aria-label="open sidebar drop-down menu" class="toggle-icon"><img class="chevron" src="./images/chevron-down.svg" alt="chevron down" tabindex="0" role="button"></span></h2>
+          <div id="drop-down-menu" class="current-bookings">
+            <p class="total-spent"></p>
+          </div>
         </div>
       </aside>
       <section class="available-rooms">
@@ -81,9 +86,21 @@
       </section>
     </main>
   </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>You have successfully booked your room! We look forward to seeing you soon.</p>
+    </div>
+  </div>
   </section>
   <footer>
-    Ricky Tran
+    <div>
+      <a href="https://github.com/rickytrandev"><img class="socials-icon" src="./images/github.svg" alt="github icon"></a>
+      <a href="https://www.linkedin.com/in/rickytrandev/"><img class="socials-icon" src="./images/linkedin.svg" alt="linkedin icon"></a>
+    </div>
+    <div>
+      &copy 2024 Ricky Tran 
+    </div>
   </footer>
   <script src="bundle.js"></script>
 </body>
