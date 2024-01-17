@@ -32,12 +32,33 @@ describe('Users functions', function() {
     expect(result).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2024/04/22", "roomNumber": 1 }, { "id": "5fwrgu4i7k55hl6t6", "userID": 1, "date":  "2024/01/10", "roomNumber": 2 }]);
   });
 
+  it('function findUserCurrentBookings should handle invalid user', () => {
+    const result = findUserCurrentBookings(null, currentBookings)
+    expect(result).to.deep.equal([]);
+  });
+  
+  it('function findUserCurrentBookings should handle empty bookings array', () => {
+    const result = findUserCurrentBookings(currentUser, [])
+    expect(result).to.deep.equal([]);
+  });
+
   it('function findRoomDetails should filter rooms with that room number', () => {
     const usersBookedRooms = findUserCurrentBookings(currentUser, currentBookings)
     const result = findRoomDetails(usersBookedRooms, rooms)
 
     expect(result).to.deep.equal([{ "number": 1, "roomType": "residential suite", "bidet": true, "bedSize": "queen", "numBeds": 1,"costPerNight": 358.4, "date": "2024/04/22" },
       { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38, "date": "2024/01/10" }]);
+  });
+
+  it('function findRoomDetails should handle empty booked rooms array', () => {
+    const result = findRoomDetails([], rooms)
+    expect(result).to.deep.equal([]);
+  });
+  
+  it('function findRoomDetails should handle empty rooms array', () => {
+    const usersBookedRooms = findUserCurrentBookings(currentUser, currentBookings)
+    const result = findRoomDetails(usersBookedRooms, [])
+    expect(result).to.deep.equal([]);
   });
 
   it('function getTotalSpent should return total amount spent on all booked rooms', () => {
@@ -48,6 +69,11 @@ describe('Users functions', function() {
     expect(result).to.equal(835.78);
   });
 
+  it('function getTotalSpent should handle empty room details array', () => {
+    const result = getTotalSpent([])
+    expect(result).to.equal(0);
+  });  
+
   it('function filterRooms should filter available rooms by roomType property', () => {
     const suites = filterRooms(rooms, "suite")
     const singleRoom = filterRooms(rooms, "single room")
@@ -55,6 +81,11 @@ describe('Users functions', function() {
     expect(suites).to.deep.equal([{ "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
     expect(singleRoom).to.deep.equal([{ "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }]);
   });
+
+  it('function filterRooms should handle empty rooms array', () => {
+    const result = filterRooms([], "suite")
+    expect(result).to.deep.equal([]);
+  });  
 
   it('function getAvailableRooms should filter available rooms by date', () => {
     const result1 = getAvailableRooms(currentBookings, "2024/01/24", rooms)
@@ -64,4 +95,15 @@ describe('Users functions', function() {
     { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
     expect(result2).to.deep.equal([{ "number": 5, "roomType": "single room", "bidet": false, "bedSize": "king", "numBeds": 1,"costPerNight": 491.14 }, { "number": 2, "roomType": "suite", "bidet": false, "bedSize": "full", "numBeds": 2,"costPerNight": 477.38 }]);
   });
+  
+  it('function getAvailableRooms should handle empty bookings array', () => {
+    const result = getAvailableRooms([], "2024/01/24", rooms)
+    expect(result).to.deep.equal([]);
+  });
+  
+  it('function getAvailableRooms should handle empty rooms array', () => {
+    const result = getAvailableRooms(currentBookings, "2024/01/24", [])
+    expect(result).to.deep.equal([]);
+  });
 });
+
