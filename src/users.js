@@ -1,11 +1,17 @@
 
 
 export function findUserCurrentBookings(currentUser, currentBookings) {
+	if (!currentUser) {
+		return []
+	}
 	const userID = currentUser.id
 	return currentBookings.filter(booking => userID === booking.userID)
 }
 
 export function findRoomDetails(bookedRooms, allRooms) {
+	if (!allRooms.length) {
+		return []
+	}
 	const userRoomDetails = []
 	const roomNumbers = bookedRooms.map(booking => booking.roomNumber)
 	const dates = bookedRooms.map(booking => booking.date)
@@ -22,6 +28,9 @@ export function findRoomDetails(bookedRooms, allRooms) {
 }
 
 export function getTotalSpent(roomDetails) {
+	if (!roomDetails.length) {
+		return 0
+	}
 	const totalSpent = roomDetails.reduce((acc, room) => {
 		acc += room.costPerNight
 		return acc
@@ -34,6 +43,9 @@ export function filterRooms(availableRooms, roomTypes) {
 }
 
 export function getAvailableRooms(allBookings, fromDate, allRooms) {
+	if (!allBookings.length || !allRooms.length) {
+		return []
+	}
 	const findBookingsOnDate = allBookings.filter(booking => booking.date === fromDate);
 	const nonAvailableRooms = findBookingsOnDate.map(booking => booking.roomNumber);
 
