@@ -211,11 +211,13 @@ function generateUserBookedRooms() {
 	roomDetails.forEach(room => {
 		currentBookingsSection.html(currentBookingsSection.html() + `
 		<div class="bookings-card" tabindex="0">
-		<p class="descriptor"> Date: <span>${room.date}</span></p>
-		<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
-		<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
-		<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
-		<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+			<div>
+				<p class="descriptor"> Date: <span>${room.date}</span></p>
+				<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
+				<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
+				<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
+				<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+			</div>
 		</div>
 		`);
 	})
