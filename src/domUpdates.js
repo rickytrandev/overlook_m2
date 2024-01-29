@@ -159,13 +159,35 @@ $(document).keydown((e) => {
 function generateAvailableRooms(rooms) {
 	availableRoomsSection.html(`<h2 class="booking-title" >Available Rooms for ${fromDate}</h2>`)
 	rooms.forEach(room => {
+		let roomImg;
+		switch (room.roomType) {
+			case 'residential suite': 
+				roomImg = "./images/residential-suite.jpg"
+				break;
+			case 'suite': 
+				roomImg = "./images/suite.jpg"
+				break;
+			case 'junior suite': 
+				roomImg = "./images/junior-suite.jpg"
+				break;
+			case 'single room': 
+				roomImg = "./images/single-room.jpg"
+				break;
+			default:
+				break;
+		}
 		availableRoomsSection.html(availableRoomsSection.html() + `
-		<div class="bookings-card tabindex="0">
-		<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
-		<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
-		<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
-		<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
-		<button id="${room.number}" class="reserve-btn">Reserve</button>
+		<div id="${room.number}" class="bookings-card tabindex="0">
+			<div class="booking-details">
+				<p class="descriptor"> Room Type: <span>${room.roomType}</span></p>
+				<p class="descriptor"> Bed Size: <span>${room.bedSize}</span></p>
+				<p class="descriptor"> Beds: <span>${room.numBeds}</span></p>
+				<p class="descriptor"> Per Night: <span>$${room.costPerNight}</span></p>
+				<button id="${room.number}" class="reserve-btn">Reserve</button>
+			</div>
+			<div class="img-container">
+				<img class="room-img" src="${roomImg}" alt=${room.roomType}>
+			</div>
 		</div>
 		`)
 		$('.reserve-btn').click(function(e) {
@@ -173,7 +195,7 @@ function generateAvailableRooms(rooms) {
 			bookRoom(roomNumber, fromDate, userID)
 			.then(() => {
 				modal.css('display', 'block')
-				$(`#${String(roomNumber)}`).parent().remove()
+				$(`#${String(roomNumber)}`).remove()
 				return generateUserBookedRooms()
 			})
 		});

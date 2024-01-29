@@ -171,7 +171,7 @@ span {
 }
 
 .descriptor {
-  margin: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
 }
 
 .total-spent {
@@ -181,7 +181,10 @@ span {
 }
 
 .bookings-card {
+  display: flex;
+  justify-content: space-between;
   margin: 20px;
+  margin-bottom: 40px;
 }
 
 .current-bookings-section, .available-rooms, .filters {
@@ -242,6 +245,10 @@ span {
 .reserve-btn:hover {
   cursor: pointer;
   background-color: #278437;
+}
+
+.room-img {
+  width: 250px;
 }
 
 .modal {
