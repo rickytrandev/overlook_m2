@@ -176,7 +176,6 @@ function generateAvailableRooms(rooms) {
 			default:
 				break;
 		}
-		console.log(roomImg);
 		availableRoomsSection.html(availableRoomsSection.html() + `
 		<div id="${room.number}" class="bookings-card tabindex="0">
 			<div class="booking-details">
