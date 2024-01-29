@@ -22,6 +22,7 @@ export function findRoomDetails(bookedRooms, allRooms) {
 	})
 
 	const filteredRoomsWithDates = userRoomDetails.map((room, index) => {
+		console.log(room.number);
 		return { number: room.number, roomType : room.roomType, bidet : room.bidet, bedSize : room.bedSize, numBeds : room.numBeds, costPerNight : room.costPerNight, date : dates[index] }
 	})
 	return filteredRoomsWithDates
