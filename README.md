@@ -34,6 +34,8 @@ jQuery, CSS, HTML, Mocha, Chai, Fetch API, Lighthouse
 -  `npm install`
 -  `npm start`
 -  Navigate to `localhost:8080`
+  
+# Links
+- [Project Board](https://github.com/users/rickytrandev/projects/2)
+- [Demo](https://www.youtube.com/watch?v=oN5vI2dMw_8&ab_channel=RichardTran)
 
-You can find the project board [here](https://github.com/users/rickytrandev/projects/2)
-View the demo [here!](https://www.youtube.com/watch?v=oN5vI2dMw_8&ab_channel=RichardTran)
